@@ -3,7 +3,7 @@
  * Module dependencies.
  */
 
-var staticProvider,
+var connect = require('connect'),
 		assert = require('assert'),
 		should = require('should'),
 		http = require('http'),
@@ -12,12 +12,6 @@ var staticProvider,
 		fs = require('fs'),
 		shasum = crypto.createHash('sha1');
 
-try {
-	staticProvider = require('connect');
-} catch (e) {
-	staticProvider = require('express');
-}
-
 /**
  * Path to ./test/fixtures/
  */
@@ -25,7 +19,7 @@ try {
 var fixturesPath = __dirname + '/fixtures';
 
 function getApp() {
-	return staticProvider.createServer(gzippo.staticGzip(fixturesPath));
+	return connect().use(gzippo.staticGzip(fixturesPath));
 }
 
 module.exports = {

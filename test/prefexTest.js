@@ -3,17 +3,11 @@
  * Module dependencies.
  */
 
-var staticProvider,
+var connect = require('connect'),
 		assert = require('assert'),
 		should = require('should'),
 		http = require('http'),
 		gzippo = require('../');
-
-try {
-	staticProvider = require('connect');
-} catch (e) {
-	staticProvider = require('express');
-}
 
 /**
  * Path to ./test/fixtures/
@@ -23,7 +17,7 @@ var fixturesPath = __dirname + '/fixtures';
 
 module.exports = {
 	'requesting without a prefix succeeds': function() {
-		var app = staticProvider.createServer(
+		var app = connect().use(
 			gzippo.staticGzip(fixturesPath)
 		);
 
@@ -44,7 +38,7 @@ module.exports = {
 		);
 	},
 	'requesting with a prefix succeeds': function() {
-		var app = staticProvider.createServer(
+		var app = connect().use(
 			gzippo.staticGzip(fixturesPath, { prefix: '/resource' })
 		);
 
@@ -65,7 +59,7 @@ module.exports = {
 		);
 	},
 	'requesting with a / prefix succeeds': function() {
-		var app = staticProvider.createServer(
+		var app = connect.createServer(
 			gzippo.staticGzip(fixturesPath, { prefix: '/'})
 		);
 

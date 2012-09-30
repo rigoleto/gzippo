@@ -21,12 +21,12 @@
   },
   "main": "./index.js",
   "dependencies": {
-    "mime": ">= 1.2"
+    "mime": ">= 1.2",
+    "connect": "2.5.x"
   },
   "devDependencies": {
     "expresso": ">= 0.9",
-    "should": ">= 0.3",
-    "connect": "~1"
+    "should": ">= 0.3"
   },
   "optionalDependencies": {}
 }
